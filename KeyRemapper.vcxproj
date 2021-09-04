@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ExtraInfo.cpp" />
+    <ClCompile Include="KeyHandler.cpp" />
+    <ClCompile Include="Switcher.cpp" />
+    <ClCompile Include="SwitchersStorage.cpp" />
+    <ClCompile Include="Test.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{F7289E02-AF88-46DA-87B0-1356130FE5BE}</ProjectGuid>
@@ -137,13 +144,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\SendInputTest\SendInputTest\ExtraInfo.cpp" />
-    <ClCompile Include="..\..\SendInputTest\SendInputTest\KeyHandler.cpp" />
-    <ClCompile Include="..\..\SendInputTest\SendInputTest\Switcher.cpp" />
-    <ClCompile Include="..\..\SendInputTest\SendInputTest\SwitchersStorage.cpp" />
-    <ClCompile Include="..\..\SendInputTest\SendInputTest\Test.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
