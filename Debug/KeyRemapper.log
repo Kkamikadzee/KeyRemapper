@@ -1,0 +1,38 @@
+﻿  ExtraInfo.cpp
+  KeyHandler.cpp
+M:\Source\C++\SendInputTest\SendInputTest\KeyHandler.cpp(19,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
+M:\Source\C++\SendInputTest\SendInputTest\KeyHandler.cpp(33,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
+  Switcher.cpp
+M:\Source\C++\SendInputTest\SendInputTest\KeyHandler.cpp(19,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
+M:\Source\C++\SendInputTest\SendInputTest\KeyHandler.cpp(33,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
+  SwitchersStorage.cpp
+M:\Source\C++\SendInputTest\SendInputTest\KeyHandler.cpp(19,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
+M:\Source\C++\SendInputTest\SendInputTest\KeyHandler.cpp(33,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
+M:\Source\C++\SendInputTest\SendInputTest\SwitchersStorage.cpp(22,22): warning C4018: <: несоответствие типов со знаком и без знака
+M:\Source\C++\SendInputTest\SendInputTest\SwitchersStorage.cpp(24,1): error C3867: "Switcher::ReplaceableKeyIsDowned": нестандартный синтаксис; используйте "&", чтобы создать указатель на член
+M:\Source\C++\SendInputTest\SendInputTest\SwitchersStorage.cpp(36,22): warning C4018: <: несоответствие типов со знаком и без знака
+M:\Source\C++\SendInputTest\SendInputTest\SwitchersStorage.cpp(38,1): error C3867: "Switcher::ReplaceableKeyIsUpped": нестандартный синтаксис; используйте "&", чтобы создать указатель на член
+  Test.cpp
+M:\Source\C++\SendInputTest\SendInputTest\KeyHandler.cpp(19,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
+M:\Source\C++\SendInputTest\SendInputTest\KeyHandler.cpp(33,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(16,1): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(16,47): error C2065: KeyW: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(17,1): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(17,47): error C2065: KeyS: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(29,6): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(29,51): error C2065: KeyW: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(33,58): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(33,54): error C2065: KeyS: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(38,6): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(38,51): error C2065: KeyS: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(42,58): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(42,54): error C2065: KeyW: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(49,6): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(49,51): error C2065: KeyW: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(53,58): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(53,54): error C2065: KeyS: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(58,6): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(58,51): error C2065: KeyS: необъявленный идентификатор
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(62,58): error C2653: KeyCode: не является именем класса или пространства имен
+M:\Source\C++\SendInputTest\SendInputTest\Test.cpp(62,54): error C2065: KeyW: необъявленный идентификатор
+  Создание кода...
