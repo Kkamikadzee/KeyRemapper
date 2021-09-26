@@ -13,8 +13,8 @@ static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lP
 	//std::cout << "dwExtraInfo \t" << (unsigned long)pkhs->dwExtraInfo << "\t" << pkhs->dwExtraInfo << std::endl;
 
 	if (pkhs->vkCode != VK_ESCAPE &&
-		pkhs->vkCode != static_cast<DWORD>(KeyCode::KeyW) &&
-		pkhs->vkCode != static_cast<DWORD>(KeyCode::KeyS))
+		pkhs->vkCode != static_cast<DWORD>(0x57) &&
+		pkhs->vkCode != static_cast<DWORD>(0x53))
 	{
 		return CallNextHookEx(0, nCode, wParam, lParam);
 	}
@@ -26,40 +26,40 @@ static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lP
 			PostQuitMessage(0);
 		}
 
-		if (pkhs->vkCode == static_cast<DWORD>(KeyCode::KeyW))
+		if (pkhs->vkCode == static_cast<DWORD>(0x57))
 		{
 			if (pkhs->dwExtraInfo != static_cast<ULONG_PTR>(ExtraInfo::KeyHendler))
 			{
-				keyHandler->LowerKey(static_cast<DWORD>(KeyCode::KeyS));
+				keyHandler->LowerKey(static_cast<DWORD>(0x53));
 				return 1;
 			}
 		}
 
-		if (pkhs->vkCode == static_cast<DWORD>(KeyCode::KeyS))
+		if (pkhs->vkCode == static_cast<DWORD>(0x53))
 		{
 			if (pkhs->dwExtraInfo != static_cast<ULONG_PTR>(ExtraInfo::KeyHendler))
 			{
-				keyHandler->LowerKey(static_cast<DWORD>(KeyCode::KeyW));
+				keyHandler->LowerKey(static_cast<DWORD>(0x57));
 				return 1;
 			}
 		}
 	}
 	else if (wParam == WM_KEYUP)
 	{
-		if (pkhs->vkCode == static_cast<DWORD>(KeyCode::KeyW))
+		if (pkhs->vkCode == static_cast<DWORD>(0x57))
 		{
 			if (pkhs->dwExtraInfo != static_cast<ULONG_PTR>(ExtraInfo::KeyHendler))
 			{
-				keyHandler->RaiseKey(static_cast<DWORD>(KeyCode::KeyS));
+				keyHandler->RaiseKey(static_cast<DWORD>(0x53));
 				return 1;
 			}
 		}
 
-		if (pkhs->vkCode == static_cast<DWORD>(KeyCode::KeyS))
+		if (pkhs->vkCode == static_cast<DWORD>(0x53))
 		{
 			if (pkhs->dwExtraInfo != static_cast<ULONG_PTR>(ExtraInfo::KeyHendler))
 			{
-				keyHandler->RaiseKey(static_cast<DWORD>(KeyCode::KeyW));
+				keyHandler->RaiseKey(static_cast<DWORD>(0x57));
 				return 1;
 			}
 		}

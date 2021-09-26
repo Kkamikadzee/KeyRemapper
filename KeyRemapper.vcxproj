@@ -23,6 +23,7 @@
     <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="Switcher.cpp" />
     <ClCompile Include="SwitchersStorage.cpp" />
+    <ClCompile Include="SwitchersStorageCreator.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

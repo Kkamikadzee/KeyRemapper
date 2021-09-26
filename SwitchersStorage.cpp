@@ -1,15 +1,14 @@
 #pragma once
-#include <list>
 #include <Windows.h>
 #include "Switcher.cpp"
 
-class SwitcherStorage 
+class SwitchersStorage 
 {
 private:
 	Switcher** _keySwitchers;
 	UINT _countSwitchers;
 public:
-	SwitcherStorage(Switcher** keySwitchersArray, UINT countSwitchers)
+	SwitchersStorage(Switcher** keySwitchersArray, UINT countSwitchers)
 	{
 		_keySwitchers = keySwitchersArray;
 		_countSwitchers = countSwitchers;
@@ -21,7 +20,7 @@ public:
 		{
 			for (int i = 0; i < _countSwitchers; i++)
 			{
-				if (_keySwitchers[i]->ReplaceableKeyIsDowned)
+				if (_keySwitchers[i]->ReplaceableKeyIsDowned(pkhs))
 				{
 					return _keySwitchers[i];
 				}
@@ -35,7 +34,7 @@ public:
 		{
 			for (int i = 0; i < _countSwitchers; i++)
 			{
-				if (_keySwitchers[i]->ReplaceableKeyIsUpped)
+				if (_keySwitchers[i]->ReplaceableKeyIsUpped(pkhs))
 				{
 					return _keySwitchers[i];
 				}
