@@ -19,12 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ExtraInfo.cpp" />
-    <ClCompile Include="KeyHandler.cpp" />
-    <ClCompile Include="Switcher.cpp" />
-    <ClCompile Include="SwitchersStorage.cpp" />
-    <ClCompile Include="SwitchersStorageCreator.cpp" />
-    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="include\ExtraInfo.h" />
+    <ClCompile Include="src\KeyHandler.cpp" />
+    <ClCompile Include="src\KeyRemapper.cpp" />
+    <ClCompile Include="src\Switcher.cpp" />
+    <ClCompile Include="src\SwitchersStorage.cpp" />
+    <ClCompile Include="src\SwitchersStorageCreator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\KeyHandler.h" />
+    <ClInclude Include="include\KeyRemapper.h" />
+    <ClInclude Include="include\Switcher.h" />
+    <ClInclude Include="include\SwitchersStorage.h" />
+    <ClInclude Include="include\SwitchersStorageCreator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -34,7 +41,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -47,7 +54,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -95,6 +102,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Debug;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Debug;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,12 +1,1 @@
-﻿  SwitchersStorage.cpp
-M:\Source\C++\KeyRemapper\KeyRemapper\KeyHandler.cpp(19,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
-M:\Source\C++\KeyRemapper\KeyRemapper\KeyHandler.cpp(33,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
-M:\Source\C++\KeyRemapper\KeyRemapper\SwitchersStorage.cpp(21,22): warning C4018: <: несоответствие типов со знаком и без знака
-M:\Source\C++\KeyRemapper\KeyRemapper\SwitchersStorage.cpp(35,22): warning C4018: <: несоответствие типов со знаком и без знака
-  SwitchersStorageCreator.cpp
-M:\Source\C++\KeyRemapper\KeyRemapper\KeyHandler.cpp(19,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
-M:\Source\C++\KeyRemapper\KeyRemapper\KeyHandler.cpp(33,19): warning C4244: =: преобразование "DWORD" в "WORD", возможна потеря данных
-M:\Source\C++\KeyRemapper\KeyRemapper\SwitchersStorage.cpp(21,22): warning C4018: <: несоответствие типов со знаком и без знака
-M:\Source\C++\KeyRemapper\KeyRemapper\SwitchersStorage.cpp(35,22): warning C4018: <: несоответствие типов со знаком и без знака
-  Создание кода...
-  KeyRemapper.vcxproj -> M:\Source\C++\KeyRemapper\Debug\KeyRemapper.exe
+﻿  KeyRemapper.vcxproj -> M:\Source\C++\KeyRemapper\Debug\KeyRemapper.lib
