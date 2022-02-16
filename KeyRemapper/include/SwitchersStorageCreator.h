@@ -11,10 +11,11 @@ namespace KmkKeyRemapper
 	class SwitchersStorageCreator
 	{
 	private:
-		std::vector<Switcher*>* AddSwitcherIntoVector(std::vector<Switcher*>* switchers, DWORD replaceableKeyCode, DWORD replacementKeyCode);
+		std::vector<Switcher *> *AddSwitcherIntoVector(std::vector<Switcher *> *switchers, DWORD replaceableKeyCode, DWORD replacementKeyCode);
+
 	public:
 		SwitchersStorageCreator();
 
-		SwitchersStorage* Create(std::map<char, char> pairsReplacableKeyAndReplacementKey);
+		SwitchersStorage *Create(std::map<char, char> pairsReplacableKeyAndReplacementKey);
 	};
 }

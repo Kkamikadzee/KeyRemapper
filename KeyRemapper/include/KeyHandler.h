@@ -7,6 +7,7 @@ namespace KmkKeyRemapper
 	{
 	private:
 		INPUT _input;
+
 	public:
 		void LowerKey(DWORD key);
 
