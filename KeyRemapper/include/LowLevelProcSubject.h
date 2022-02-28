@@ -9,12 +9,14 @@ namespace Kmk
     class LowLevelProcSubject : public ILowLevelProcSubject
     {
     public:
-        LowLevelProcSubject() = default;
+        LowLevelProcSubject(LowLevelProcSubject &orig) = delete;
         ~LowLevelProcSubject() = default;
 
-        void Attach(ILowLevelProcObserver *observer);
-        void Detach(ILowLevelProcObserver *observer);
-        void Notify(const WPARAM wParam, const LPARAM lParam);
+        LowLevelProcSubject operator=(LowLevelProcSubject &orig) = delete;
+
+        void Attach(ILowLevelProcObserver *observer) override;
+        void Detach(ILowLevelProcObserver *observer) override;
+        void Notify(const WPARAM wParam, const LPARAM lParam) override;
 
     private:
         std::list<ILowLevelProcObserver *> _observers;
