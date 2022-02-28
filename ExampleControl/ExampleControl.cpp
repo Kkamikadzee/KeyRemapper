@@ -7,7 +7,7 @@
 #include <SwitchersStorageCreator.h>
 #include <KeyRemapper.h>
 
-using namespace KmkKeyRemapper;
+using namespace Kmk;
 
 static SwitchersStorage *storage1;
 static SwitchersStorage *storage2;
