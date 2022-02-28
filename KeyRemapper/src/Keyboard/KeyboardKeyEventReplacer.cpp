@@ -2,7 +2,7 @@
 #include "IKeyHandler.h"
 #include "IKeyEventReplacer.h"
 #include "Keyboard/KeyboardKeyEventReplacer.h"
-#include "Emuns.h"
+#include "Enums.h"
 
 namespace Kmk
 {

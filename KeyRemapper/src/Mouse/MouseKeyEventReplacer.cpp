@@ -3,7 +3,7 @@
 #include "IKeyHandler.h"
 #include "IKeyEventReplacer.h"
 #include "Mouse/MouseKeyEventReplacer.h"
-#include "Emuns.h"
+#include "Enums.h"
 
 namespace Kmk
 {

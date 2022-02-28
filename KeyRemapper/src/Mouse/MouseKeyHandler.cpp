@@ -1,5 +1,5 @@
 #include <Windows.h>
-#include "Emuns.h"
+#include "Enums.h"
 #include "Mouse/MouseKeyHandler.h"
 
 namespace Kmk
