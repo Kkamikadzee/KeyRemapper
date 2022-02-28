@@ -9,7 +9,7 @@ namespace Kmk
     class LowLevelProcSubject : public ILowLevelProcSubject
     {
     public:
-        LowLevelProcSubject(LowLevelProcSubject &orig) = delete;
+        LowLevelProcSubject(const LowLevelProcSubject &orig) = delete;
         ~LowLevelProcSubject() = default;
 
         LowLevelProcSubject operator=(LowLevelProcSubject &orig) = delete;

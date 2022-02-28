@@ -10,7 +10,7 @@ namespace Kmk
     {
     public:
         LowLevelProcObserver(ILowLevelProcSubject *subject, const IKeyEventReplacer *keyHandler);
-        LowLevelProcObserver(LowLevelProcObserver &orig) = delete;
+        LowLevelProcObserver(const LowLevelProcObserver &orig) = delete;
         ~LowLevelProcObserver() = default;
 
         ILowLevelProcObserver operator=(ILowLevelProcObserver &orig) = delete;
