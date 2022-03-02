@@ -1,16 +1,12 @@
 ﻿#include <windows.h>
-#include <iostream>
+#include <string>
 #include <map>
-#include <KeyHandler.h>
-#include <ExtraInfo.h>
-#include <SwitchersStorage.h>
-#include <SwitchersStorageCreator.h>
+#include <vector>
 #include <KeyRemapper.h>
+#include <KeyRemapperCreator.h>
 
 using namespace Kmk;
 
-static SwitchersStorage *storage1;
-static SwitchersStorage *storage2;
 static KeyRemapper *remapper;
 
 static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
@@ -25,13 +21,13 @@ static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lP
 			PostQuitMessage(0);
 			break;
 		case VK_F1:
-			remapper->Activate();
+			remapper->Activate(0);
 			break;
 		case VK_F2:
-			remapper->SetStorage(storage1);
+			remapper->Activate(1);
 			break;
 		case VK_F3:
-			remapper->SetStorage(storage2);
+			remapper->Activate(2);
 			break;
 		case VK_F4:
 			remapper->Deactivate();
@@ -44,23 +40,21 @@ static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lP
 
 int main()
 {
-	std::map<char, char> pairsReplacableKeyAndReplacementKey;
-	pairsReplacableKeyAndReplacementKey['w'] = 's';
-	pairsReplacableKeyAndReplacementKey['s'] = 'w';
+	std::vector<std::map<std::string, std::string>> replacePairs{
+		{{"w", "s"}},
+		{{"LMB", "w"}, {"w", "LMB"}, {"LALT", "A"}},
+		{{"w", "s"},
+		 {"s", "w"},
+		 {"a", "d"},
+		 {"d", "a"}}};
 
-	storage1 = (new SwitchersStorageCreator())->Create(pairsReplacableKeyAndReplacementKey);
-
-	pairsReplacableKeyAndReplacementKey.clear();
-	pairsReplacableKeyAndReplacementKey['a'] = 'd';
-	pairsReplacableKeyAndReplacementKey['d'] = 'a';
-
-	storage2 = (new SwitchersStorageCreator())->Create(pairsReplacableKeyAndReplacementKey);
-
-	remapper = new KeyRemapper(storage1);
+	KeyRemapperCreator krc;
+	remapper = krc.Create(replacePairs);
 
 	HHOOK g_hHook = SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, NULL, 0);
 	MSG msg;
 	GetMessage(&msg, NULL, 0, 0);
 	UnhookWindowsHookEx(g_hHook);
+	KeyRemapper::DestructInstance();
 	return 0;
 }
