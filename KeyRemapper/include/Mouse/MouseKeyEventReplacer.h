@@ -9,15 +9,11 @@ namespace Kmk
     class MouseKeyEventReplacer : public IKeyEventReplacer
     {
     public:
-        MouseKeyEventReplacer(IKeyHandler *keyHandler, MouseButton replaceableKey);
+        MouseKeyEventReplacer(IKeyHandler *keyHandler, const MouseButton replaceableKey);
 
         ~MouseKeyEventReplacer() = default;
 
-        void Invoke(const WPARAM wParam, const LPARAM lParam) const override;
-
-    private:
-        static int GetKeyDownCodeByMouseButton(MouseButton key);
-        static int GetKeyUpCodeByMouseButton(MouseButton key);
+        bool Invoke(const WPARAM wParam, const LPARAM lParam) const override;
 
     private:
         int _keyDownCode;

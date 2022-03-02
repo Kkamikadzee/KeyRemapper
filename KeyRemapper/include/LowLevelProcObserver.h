@@ -9,13 +9,13 @@ namespace Kmk
     class LowLevelProcObserver : public ILowLevelProcObserver
     {
     public:
-        LowLevelProcObserver(ILowLevelProcSubject *subject, const IKeyEventReplacer *keyHandler);
+        LowLevelProcObserver(ILowLevelProcSubject *subject, const IKeyEventReplacer *keyReplacer);
         LowLevelProcObserver(const LowLevelProcObserver &orig) = delete;
         ~LowLevelProcObserver() = default;
 
         ILowLevelProcObserver operator=(ILowLevelProcObserver &orig) = delete;
 
-        void Update(const WPARAM wParam, const LPARAM lParam) override;
+        bool Update(const WPARAM wParam, const LPARAM lParam) override;
         void Detach() override;
 
     private:

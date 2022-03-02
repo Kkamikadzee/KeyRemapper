@@ -24,7 +24,7 @@ namespace Kmk
         KeyRemapper operator=(KeyRemapper &orig) = delete;
 
         void Activate(const std::size_t setIndex = 0);
-        void Deativate();
+        void Deactivate();
 
     protected:
         KeyRemapper(ILowLevelProcSubject *keyboardSubject,

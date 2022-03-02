@@ -11,6 +11,7 @@
 namespace Kmk
 {
     KeyRemapper *KeyRemapper::_instance = nullptr;
+    std::mutex KeyRemapper::_instanceMutex;
 
     KeyRemapper *KeyRemapper::GetInstance(ILowLevelProcSubject *keyboardSubject,
                                           std::vector<std::forward_list<ILowLevelProcObserver *>> &keyboardObserversSets,
@@ -57,7 +58,7 @@ namespace Kmk
 
     KeyRemapper::~KeyRemapper()
     {
-        Deativate();
+        Deactivate();
 
         delete _keyboardSubject;
         delete _mouseSubject;
@@ -70,7 +71,7 @@ namespace Kmk
     {
         if (_isActive)
         {
-            Deativate();
+            Deactivate();
         }
 
         if (_keyboardObserversSets.size() != _mouseObserversSets.size())
@@ -78,32 +79,32 @@ namespace Kmk
             throw std::runtime_error("Size keyboard sets and mouse sets not equals.");
         }
 
-        if (_subjectsMutex.try_lock())
-        {
-            AttachRangeToSubject(_keyboardObserversSets[setIndex].begin(), _keyboardObserversSets[setIndex].end(), _keyboardSubject);
-            AttachRangeToSubject(_mouseObserversSets[setIndex].begin(), _mouseObserversSets[setIndex].end(), _mouseSubject);
+        std::lock_guard<std::mutex> lock(_subjectsMutex);
+        AttachRangeToSubject(_keyboardObserversSets[setIndex].begin(), _keyboardObserversSets[setIndex].end(), _keyboardSubject);
+        AttachRangeToSubject(_mouseObserversSets[setIndex].begin(), _mouseObserversSets[setIndex].end(), _mouseSubject);
 
-            _keyboardLlHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyRemapper::LowLevelKeyboardProc, nullptr, 0);
-            _mouseLlHook = SetWindowsHookEx(WH_MOUSE_LL, KeyRemapper::LowLevelMouseProc, nullptr, 0);
+        _keyboardLlHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyRemapper::LowLevelKeyboardProc, nullptr, 0);
+        _mouseLlHook = SetWindowsHookEx(WH_MOUSE_LL, KeyRemapper::LowLevelMouseProc, nullptr, 0);
 
-            _activeObserversSet = setIndex;
-            _isActive = true;
-
-            _subjectsMutex.unlock();
-        }
+        _activeObserversSet = setIndex;
+        _isActive = true;
     }
 
-    void KeyRemapper::Deativate()
+    void KeyRemapper::Deactivate()
     {
         if (_isActive)
         {
-            UnhookWindowsHookEx(_keyboardLlHook);
-            UnhookWindowsHookEx(_mouseLlHook);
+            std::lock_guard<std::mutex> lock(_subjectsMutex);
+            if (_isActive)
+            {
+                UnhookWindowsHookEx(_keyboardLlHook);
+                UnhookWindowsHookEx(_mouseLlHook);
 
-            DetachRange(_keyboardObserversSets[_activeObserversSet].begin(), _keyboardObserversSets[_activeObserversSet].end());
-            DetachRange(_mouseObserversSets[_activeObserversSet].begin(), _mouseObserversSets[_activeObserversSet].end());
+                DetachRange(_keyboardObserversSets[_activeObserversSet].begin(), _keyboardObserversSets[_activeObserversSet].end());
+                DetachRange(_mouseObserversSets[_activeObserversSet].begin(), _mouseObserversSets[_activeObserversSet].end());
 
-            _isActive = false;
+                _isActive = false;
+            }
         }
     }
 
@@ -112,7 +113,10 @@ namespace Kmk
         auto instance = KeyRemapper::TryGetInstance();
         if (instance != nullptr)
         {
-            instance->_keyboardSubject->Notify(wParam, lParam);
+            if(instance->_keyboardSubject->Notify(wParam, lParam))
+            {
+                return 1;
+            }
         }
 
         return CallNextHookEx(0, nCode, wParam, lParam);
@@ -131,16 +135,14 @@ namespace Kmk
 
     void EraseObserversSets(std::vector<std::forward_list<ILowLevelProcObserver *>> &observersSets)
     {
-        for (auto listPtr = observersSets.rbegin(); listPtr != observersSets.rend(); listPtr = observersSets.rbegin())
+        for (auto list : observersSets)
         {
-            for (auto elementPtr = listPtr->begin(); elementPtr != listPtr->end(); elementPtr = listPtr->begin())
+            for (auto element: list)
             {
-                listPtr->pop_front();
-                delete *elementPtr;
+                delete element;
             }
-
-            observersSets.pop_back();
         }
+        observersSets.clear();
     }
 
     void AttachRangeToSubject(std::forward_list<ILowLevelProcObserver *>::iterator begin,

@@ -12,7 +12,7 @@ namespace Kmk
 
         ~KeyboardKeyEventReplacer() = default;
 
-        void Invoke(const WPARAM wParam, const LPARAM lParam) const override;
+        bool Invoke(const WPARAM wParam, const LPARAM lParam) const override;
 
     private:
         DWORD _replaceableKeyCode;

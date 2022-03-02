@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+#include <windows.h>
 
 namespace Kmk
 {
@@ -14,4 +14,9 @@ namespace Kmk
 		Left = 0,
 		Right = 1
 	};
+
+	const int GetKeyDownCodeByMouseButton(const MouseButton key);
+	const int GetKeyUpCodeByMouseButton(const MouseButton key);
+	const int GetKeyDownEventByMouseButton(const MouseButton key);
+	const int GetKeyUpEventByMouseButton(const MouseButton key);
 }

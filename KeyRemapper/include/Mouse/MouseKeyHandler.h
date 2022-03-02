@@ -1,4 +1,5 @@
 #pragma once
+#include "../Enums.h"
 #include "../IKeyHandler.h"
 
 namespace Kmk
@@ -6,7 +7,7 @@ namespace Kmk
     class MouseKeyHandler : public IKeyHandler
     {
     public:
-        MouseKeyHandler(DWORD eventKeyDown, DWORD eventKeyUp);
+        MouseKeyHandler(const MouseButton replaceableKey);
         ~MouseKeyHandler() = default;
 
         void KeyDown() override;

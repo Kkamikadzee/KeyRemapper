@@ -11,6 +11,6 @@ namespace Kmk
 
         virtual void Attach(ILowLevelProcObserver *observer) = 0;
         virtual void Detach(ILowLevelProcObserver *observer) = 0;
-        virtual void Notify(const WPARAM wParam, const LPARAM lParam) = 0;
+        virtual bool Notify(const WPARAM wParam, const LPARAM lParam) = 0;
     };
 }

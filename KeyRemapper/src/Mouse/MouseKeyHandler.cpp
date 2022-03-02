@@ -1,10 +1,13 @@
-#include <Windows.h>
+#include <windows.h>
 #include "Enums.h"
 #include "Mouse/MouseKeyHandler.h"
 
 namespace Kmk
 {
-	MouseKeyHandler::MouseKeyHandler(DWORD eventKeyDown, DWORD eventKeyUp) : IKeyHandler(), _eventKeyDown(eventKeyDown), _eventKeyUp(eventKeyUp)
+	MouseKeyHandler::MouseKeyHandler(const MouseButton replaceableKey)
+		: IKeyHandler(),
+		  _eventKeyDown(GetKeyDownEventByMouseButton(replaceableKey)),
+		  _eventKeyUp(GetKeyUpEventByMouseButton(replaceableKey))
 	{
 		// Set up a generic mouse event.
 		_input.type = INPUT_MOUSE;

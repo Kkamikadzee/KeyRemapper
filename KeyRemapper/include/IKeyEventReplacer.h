@@ -16,7 +16,7 @@ namespace Kmk
 
         IKeyEventReplacer &operator=(IKeyEventReplacer &orig) = delete;
 
-        virtual void Invoke(const WPARAM wParam, const LPARAM lParam) const = 0;
+        virtual bool Invoke(const WPARAM wParam, const LPARAM lParam) const = 0;
 
     protected:
         IKeyHandler *_keyHandler;

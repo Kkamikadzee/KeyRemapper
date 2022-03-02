@@ -1,5 +1,4 @@
 #include <windows.h>
-#include <stdexcept>
 #include "IKeyHandler.h"
 #include "IKeyEventReplacer.h"
 #include "Mouse/MouseKeyEventReplacer.h"
@@ -7,12 +6,12 @@
 
 namespace Kmk
 {
-    MouseKeyEventReplacer::MouseKeyEventReplacer(IKeyHandler *keyHandler, MouseButton replaceableKey)
+    MouseKeyEventReplacer::MouseKeyEventReplacer(IKeyHandler *keyHandler, const MouseButton replaceableKey)
         : IKeyEventReplacer(keyHandler),
-          _keyDownCode(MouseKeyEventReplacer::GetKeyDownCodeByMouseButton(replaceableKey)),
-          _keyUpCode(MouseKeyEventReplacer::GetKeyUpCodeByMouseButton(replaceableKey)) {}
+          _keyDownCode(GetKeyDownCodeByMouseButton(replaceableKey)),
+          _keyUpCode(GetKeyUpCodeByMouseButton(replaceableKey)) {}
 
-    void MouseKeyEventReplacer::Invoke(const WPARAM wParam, const LPARAM lParam) const
+    bool MouseKeyEventReplacer::Invoke(const WPARAM wParam, const LPARAM lParam) const
     {
         auto pmhs = reinterpret_cast<MSLLHOOKSTRUCT *>(lParam);
 
@@ -21,37 +20,15 @@ namespace Kmk
             if (wParam == _keyDownCode)
             {
                 _keyHandler->KeyDown();
+                return true;
             }
             else if (wParam == _keyUpCode)
             {
                 _keyHandler->KeyUp();
+                return true;
             }
         }
-    }
 
-    int MouseKeyEventReplacer::GetKeyDownCodeByMouseButton(MouseButton key)
-    {
-        switch (key)
-        {
-        case MouseButton::Left:
-            return WM_LBUTTONDOWN;
-        case MouseButton::Right:
-            return WM_RBUTTONDOWN;
-        default:
-            throw std::runtime_error("Unknown mouse button.");
-        }
-    }
-
-    int MouseKeyEventReplacer::GetKeyUpCodeByMouseButton(MouseButton key)
-    {
-        switch (key)
-        {
-        case MouseButton::Left:
-            return WM_LBUTTONUP;
-        case MouseButton::Right:
-            return WM_RBUTTONUP;
-        default:
-            throw std::runtime_error("Unknown mouse button.");
-        }
+        return false;
     }
 }

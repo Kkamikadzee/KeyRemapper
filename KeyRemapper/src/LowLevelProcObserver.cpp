@@ -7,14 +7,14 @@ namespace Kmk
 {
     LowLevelProcObserver::LowLevelProcObserver(
         ILowLevelProcSubject *subject,
-        const IKeyEventReplacer *keyHandler)
-        : _subject(subject), _keyReplacer(keyHandler)
+        const IKeyEventReplacer *keyReplacer)
+        : _subject(subject), _keyReplacer(keyReplacer)
     {
     }
 
-    void LowLevelProcObserver::Update(const WPARAM wParam, const LPARAM lParam)
+    bool LowLevelProcObserver::Update(const WPARAM wParam, const LPARAM lParam)
     {
-        _keyReplacer->Invoke(wParam, lParam);
+        return _keyReplacer->Invoke(wParam, lParam);
     }
 
     void LowLevelProcObserver::Detach()
