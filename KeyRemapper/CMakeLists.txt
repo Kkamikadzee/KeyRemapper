@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(KeyRemapper)
 
-file(GLOB CPP_SOURCES "src/*.cpp")
+file(GLOB 
+    CPP_SOURCES 
+    "src/*.cpp" "src/Keyboard/*.cpp" "src/Mouse/*.cpp")
 
 add_library(${PROJECT_NAME} ${CPP_SOURCES})
 

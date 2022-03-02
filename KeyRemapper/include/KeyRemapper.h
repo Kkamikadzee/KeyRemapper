@@ -1,27 +1,63 @@
 #pragma once
 #include <windows.h>
-#include "SwitchersStorage.h"
+#include <vector>
+#include <forward_list>
+#include <mutex>
+#include "ILowLevelProcObserver.h"
+#include "ILowLevelProcSubject.h"
 
-namespace KmkKeyRemapper
+namespace Kmk
 {
-	class KeyRemapper
-	{
-	private:
-		static SwitchersStorage *_storage;
-		bool _isEnable;
-		HHOOK _llHook;
+    class KeyRemapper
+    {
+    public:
+        static KeyRemapper *GetInstance(ILowLevelProcSubject *keyboardSubject,
+                                        std::vector<std::forward_list<ILowLevelProcObserver *>> &keyboardObserversSets,
+                                        ILowLevelProcSubject *mouseSubject,
+                                        std::vector<std::forward_list<ILowLevelProcObserver *>> &mouseObserversSets);
+        static KeyRemapper *TryGetInstance();
+        static void DestructInstance();
 
-		static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
+        KeyRemapper(const KeyRemapper &orig) = delete;
+        ~KeyRemapper();
 
-	public:
-		KeyRemapper(SwitchersStorage *storage);
+        KeyRemapper operator=(KeyRemapper &orig) = delete;
 
-		~KeyRemapper();
+        void Activate(const std::size_t setIndex = 0);
+        void Deactivate();
 
-		void SetStorage(SwitchersStorage *storage);
+    protected:
+        KeyRemapper(ILowLevelProcSubject *keyboardSubject,
+                    std::vector<std::forward_list<ILowLevelProcObserver *>> &keyboardObserversSets,
+                    ILowLevelProcSubject *mouseSubject,
+                    std::vector<std::forward_list<ILowLevelProcObserver *>> &mouseObserversSets);
 
-		void Activate();
+    private:
+        static KeyRemapper *_instance;
+        static std::mutex _instanceMutex;
 
-		void Deactivate();
-	};
+        bool _isActive;
+        std::size_t _activeObserversSet;
+
+        std::mutex _subjectsMutex;
+
+        ILowLevelProcSubject *_keyboardSubject;
+        std::vector<std::forward_list<ILowLevelProcObserver *>> _keyboardObserversSets;
+
+        ILowLevelProcSubject *_mouseSubject;
+        std::vector<std::forward_list<ILowLevelProcObserver *>> _mouseObserversSets;
+
+        HHOOK _keyboardLlHook;
+        HHOOK _mouseLlHook;
+
+        static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
+        static LRESULT CALLBACK LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM lParam);
+    };
+
+    void EraseObserversSets(std::vector<std::forward_list<ILowLevelProcObserver *>> &observersSets);
+    void AttachRangeToSubject(std::forward_list<ILowLevelProcObserver *>::iterator begin,
+                              std::forward_list<ILowLevelProcObserver *>::iterator end,
+                              ILowLevelProcSubject *subject);
+    void DetachRange(std::forward_list<ILowLevelProcObserver *>::iterator begin,
+                     std::forward_list<ILowLevelProcObserver *>::iterator end);
 }
