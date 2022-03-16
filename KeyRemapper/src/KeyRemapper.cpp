@@ -30,11 +30,6 @@ namespace Kmk
         return _instance;
     }
 
-    inline KeyRemapper *KeyRemapper::TryGetInstance()
-    {
-        return _instance;
-    }
-
     void KeyRemapper::DestructInstance()
     {
         if (_instance != nullptr)

@@ -60,4 +60,9 @@ namespace Kmk
                               ILowLevelProcSubject *subject);
     void DetachRange(std::forward_list<ILowLevelProcObserver *>::iterator begin,
                      std::forward_list<ILowLevelProcObserver *>::iterator end);
+
+    inline KeyRemapper *KeyRemapper::TryGetInstance()
+    {
+        return _instance;
+    }
 }
