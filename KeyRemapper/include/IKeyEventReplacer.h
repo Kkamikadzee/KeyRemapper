@@ -7,7 +7,7 @@ namespace Kmk
     class IKeyEventReplacer
     {
     public:
-        IKeyEventReplacer(IKeyHandler *keyHandler) : _keyHandler(keyHandler) {}
+        explicit IKeyEventReplacer(IKeyHandler *keyHandler) : _keyHandler(keyHandler) {}
         IKeyEventReplacer(const IKeyEventReplacer &orig) = delete;
         virtual ~IKeyEventReplacer()
         {

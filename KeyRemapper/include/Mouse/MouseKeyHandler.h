@@ -7,7 +7,7 @@ namespace Kmk
     class MouseKeyHandler : public IKeyHandler
     {
     public:
-        MouseKeyHandler(const MouseButton replaceableKey);
+        explicit MouseKeyHandler(const MouseButton replaceableKey);
         ~MouseKeyHandler() = default;
 
         void KeyDown() override;
